@@ -1,0 +1,226 @@
+<section>
+    <div class="container">
+        <div class="row justify-content align-items-center my-2 bordet shadow-sm">
+            <div class="col-5">
+                <h3 class="titulos h3">DATOS PSICOLOGO</h3>
+            </div>
+            <div *ngIf="tipo=='modificar'" class="col-2 ">
+                <label class="my-2 text-primary texto" for="psicologo">Buscar psicologo:</label>
+            </div>
+            <div *ngIf="tipo=='modificar'" class="col">
+                <select class="borde shadow-sm texto2" (change)="obtenerDatosPsicologo($event.target)">
+                    <option *ngFor="let p of t_psicologo" [value]="p._valor">{{p._nombre}}</option>
+                </select>
+            </div>
+        </div>
+
+        <form [formGroup]="psicologoForm" (submit)="onSubmit()">
+            <div class="row justify-content-between mb-2 g-3">
+                <!--Usuario-->
+                <div *ngIf="tipo=='alta'" class="col-4 form-group">
+                    <label for="username" class="text-primary texto">Usuario:</label>
+                    <input type="text" class="col-sm-9 mx-2 py-1 px-2 borde shadow-sm texto2" id="username"
+                        formControlName="username">
+                </div>
+                <!--Correo electónico-->
+                <div class="col-8 form-group">
+                    <label for="email" class="text-primary texto ">Correo electónico:</label>
+                    <input type="email" id="email"  class="col-sm-8 mx-2 py-1 px-2 borde shadow-sm texto2"
+                        formControlName="email">
+                </div>
+            </div>
+            <div class="row justify-content mb-2 g-3">
+                <!--Usuario Error-->
+                <div class="col-4 form-group">
+                    <span *ngIf="getError('username') as message"
+                        class="text-danger texto2"><strong>{{message}}</strong></span>
+                </div>
+                <!--Correo electónico Error-->
+                <div class="col-6 form-group">
+                    <span *ngIf="getError('email') as message"
+                        class="text-danger texto"><strong>{{message}}</strong></span>
+                </div>
+            </div>
+            <div class="row justify-content-start mb-2 g-3">
+                <!--Nombre-->
+                <div class="col-4 form-group">
+                    <label for="nombre" class="text-primary texto">Nombre:</label>
+                    <input type="text" class="mx-1 py-1 px-1 borde shadow-sm texto2" id="nombre"
+                        formControlName="nombre">
+                </div>
+                <!--Primer Apellido-->
+                <div class="col-4 form-group">
+                    <label for="apellido1" class="text-primary texto">Primer Apellido:</label>
+                    <input type="text" class="mx-1 py-1 px-1 borde shadow-sm texto2" id="apellido1"
+                        formControlName="apellido1">
+                </div>
+                <!--Segundo Apellido-->
+                <div class="col-4 form-group">
+                    <label for="apellido2" class="text-primary texto">Segundo Apellido:</label>
+                    <input type="text" class="mx-1 py-1 px-1 borde shadow-sm texto2" id="apellido2"
+                        formControlName="apellido2">
+                </div>
+            </div>
+            <div class="row justify-content mb-2 g-3">
+                <!--Nombre Error-->
+                <div class="col-4 form-group">
+                    <span *ngIf="getError('nombre') as message"
+                        class="text-danger texto2"><strong>{{message}}</strong></span>
+                </div>
+                <!--Primer Apellido Error-->
+                <div class="col-4 form-group">
+                    <span *ngIf="getError('apellido1') as message"
+                        class="text-danger texto2"><strong>{{message}}</strong></span>
+                </div>
+                <!--Segundo Apellido Error-->
+                <div class="col-4 form-group">
+                    <span *ngIf="getError('apellido2') as message"
+                        class="text-danger texto2"><strong>{{message}}</strong></span>
+                </div>
+            </div>
+            <div class="row justify-content mb-2">
+                <!--Tipo Documento-->
+                <div class="col-md-auto form-group">
+                    <label for="tipo_doc" class="text-primary texto">Tipo Documento:</label>
+                    <select formControlName="tipo_doc" id="tipo_doc" class="mx-2 py-1 px-2 borde shadow-sm texto2">
+                        <option *ngFor="let d of t_doc" [value]="d.nombre">{{d.nombre}}</option>
+                    </select>
+                </div>
+                <!--Documento-->
+                <div class="col-md-auto form-group">
+                    <input type="text" formControlName="documento" class="mx-2 py-1 px-2 borde shadow-sm texto2">
+                </div>
+                <!--Teléfono-->
+                <div class="col-md-auto form-group">
+                    <label for="telefono" class="text-primary texto">Teléfono:</label>
+                    <input type="text" id="telefono" class="mx-2 py-1 px-2 borde shadow-sm texto2"
+                        formControlName="telefono">
+                </div>
+            </div>
+            <div class="row justify-content mb-2">
+                <div class="col-4"></div>
+                 <!--Documento Error-->
+                 <div class="col-4">
+                    <span *ngIf="getError('documento') as message" class="text-danger texto"><strong>{{message}}</strong></span>
+                </div>
+                <!--Teléfono Error-->
+                <div class="col-4 form-group">
+                    <span *ngIf="getError('telefono') as message"
+                        class="text-danger texto"><strong>{{message}}</strong></span>
+                </div>
+            </div>
+            <div class="row justify-content mb-2">
+                <!--Núm. de Colegiado-->
+                <div class="col-5 form-group">
+                    <label for="num_colegiado" class="text-primary texto">Núm. de Colegiado:</label>
+                    <input type="text" id="num_colegiado" class="mx-2 py-1 px-2 borde shadow-sm texto2"
+                        formControlName="num_colegiado">
+                </div>
+                <!--Titulacion-->
+                <div class="col-7 form-group">
+                    <label for="titulacion" class="text-primary texto">Titulación:</label>
+                    <input type="text" id="titulacion" class="col-sm-10 mx-2 py-1 px-2 borde shadow-sm texto2"
+                        formControlName="titulacion">
+                </div>
+            </div>
+            <div class="row justify-content mb-2 g-3">
+                <!--Num colegiado Error-->
+                <div class="col-5 form-group">
+                    <span *ngIf="getError('num_colegiado') as message"
+                        class="text-danger texto"><strong>{{message}}</strong></span>
+                </div>
+                <!--Titulacion Error-->
+                <div class="col-7 form-group">
+                    <span *ngIf="getError('titulacion') as message"
+                        class="text-danger texto"><strong>{{message}}</strong></span>
+                </div>
+            </div>
+
+            <div class="row justify-content mb-2">
+                <!--Especialidad-->
+                <div class="col-5 form-group">
+                    <label for="especialidad" class="text-primary texto">Especialidad:</label>
+                    <input type="text" id="especialidad" class="col-sm-8 mx-2 py-1 px-2 borde shadow-sm texto2"
+                        formControlName="especialidad">
+                </div>
+                <!--Credenciales Adicionales-->
+                <div class="col-6 form-group">
+                    <label for="credenciales_adic" class="text-primary texto">Credenciales Adicionales:</label>
+                    <input type="text" id="credenciales_adic" class="col-sm-7 mx-2 py-1 px-2 borde shadow-sm texto2"
+                        formControlName="credenciales_adic">
+                </div>
+            </div>
+            <div class="row justify-content mb-2">
+                <!--Especialidad Error-->
+                <div class="col-6 form-group">
+                    <span *ngIf="getError('especialidad') as message"
+                        class="text-danger texto"><strong>{{message}}</strong></span>
+                </div>
+                <!--Credenciales Error-->
+                <div class="col-6 form-group">
+                    <span *ngIf="getError('credenciales_adic') as message"
+                        class="text-danger texto"><strong>{{message}}</strong></span>
+                </div>
+            </div>
+            <fieldset class="borde p-4">
+                <div class="row justify-content mb-3">
+                    <legend class="text-primary texto"><strong>Domicilio:</strong></legend>
+                </div>
+                <div class="row justify-content mb-2 g-3">
+                    <!--Dirección-->
+                    <label for="calle" class="text-primary texto col-md-1">Dirección:</label>
+                    <div class="col-md-11 form-group">
+                        <input type="text" id="calle" class="form-control mx-2 py-1 px-2 borde shadow-sm texto2"
+                            formControlName="calle">
+                    </div>
+                </div>
+                <div class="row justify-content mb-2">
+                    <!--Dirección Error-->
+                    <div class="col-md-auto form-group">
+                        <span *ngIf="getError('calle') as message"
+                            class="text-danger texto"><strong>{{message}}</strong></span>
+                    </div>
+                </div>
+                <div class="row justify-content mb-2">
+                    <!--Código postal-->
+                    <div class="col-md-4 form-group">
+                        <label for="cod_postal" class="text-primary texto">Código postal:</label>
+                        <input type="text" id="cod_postal" class="mx-2 py-1 px-2 borde shadow-sm texto2"
+                            formControlName="cod_postal">
+                    </div>
+                    <!--Ciudad-->
+                    <div class="col-md-4 form-group">
+                        <label for="ciudad" class="text-primary texto">Ciudad:</label>
+                        <input type="text" id="ciudad" class="mx-2 py-1 px-2 borde shadow-sm texto2"
+                            formControlName="ciudad">
+                    </div>
+                    <!--Provincia-->
+                    <div class="col-md-4 form-group">
+                        <label for="provincia" class="text-primary texto">Provincia:</label>
+                        <input type="text" id="provincia" class="mx-2 py-1 px-2 borde shadow-sm texto2"
+                            formControlName="provincia">
+                    </div>
+                </div>
+                <div class="row justify-content-evenly mb-2">
+                    <!--Código postal Error-->
+                    <div class="col-md-4 form-group">
+                        <span *ngIf="getError('cod_postal') as message"
+                            class="text-danger texto"><strong>{{message}}</strong></span>
+                    </div>
+                    <!--Ciudad Error-->
+                    <div class="col-md-4 form-group">
+                        <span *ngIf="getError('ciudad') as message"
+                            class="text-danger texto"><strong>{{message}}</strong></span>
+                    </div>
+                    <!--Provincia Error-->
+                    <div class="col-md-4 form-group">
+                        <span *ngIf="getError('provincia') as message"
+                            class="text-danger texto"><strong>{{message}}</strong></span>
+                    </div>
+                </div>
+                <input type="hidden" formControlName="pais" value="España">
+            </fieldset>
+            <button class="btn btn-primary my-2 float-end" type="submit">Guardar</button>
+        </form>
+    </div>
+</section>

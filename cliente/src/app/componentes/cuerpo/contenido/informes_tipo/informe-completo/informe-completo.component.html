@@ -1,0 +1,22 @@
+<div class="container">
+    <div id="exportar" style="margin-left: 2cm;margin-right: 1.5cm;">
+
+        <div class="row">
+            <div class="col-md-auto my-3 form-group">
+                <label for="mot_doc" class="text-primary texto">Motivo del informe:</label>
+                <select [(ngModel)]="motivoForm" id="mot_doc" class="form-control mx-2 py-1 px-2 borde shadow-sm texto2" required>
+                    <option *ngFor="let d of m_doc" [value]="d.nombre">{{d.nombre}}</option>
+                </select>
+            </div>
+        </div>
+
+        <div class="row">
+            <label class="text-primary texto">Conclusiones:</label>
+            <textarea [(ngModel)]="conclusiones" class="form-control mx-2 py-1 px-2 borde shadow-sm texto2" id="conclusiones" rows="3"></textarea>
+        </div>
+
+
+    </div>
+    <input type="button" class="btn btn-primary float-end  m-3" value="Convert" (click)="createPDF()" />
+
+</div>

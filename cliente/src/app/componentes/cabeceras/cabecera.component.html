@@ -1,0 +1,63 @@
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <div class="container-fluid">
+        <a class="navbar-brand" routerLink="/auth/agenda">Nombre</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+                aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                <li class="nav-item" [routerLinkActive]="['active']">
+                    <a class="nav-link" routerLink="/auth/misDatos">Mis datos</a>
+                </li>
+                <li class="nav-item" *ngIf="admin || psicologo" [routerLinkActive]="['active']">
+                    <a class="nav-link" routerLink="/auth/altaPaciente" >Nuevo paciente</a>
+                </li>
+                <li class="nav-item" *ngIf="admin"  [routerLinkActive]="['active']">
+                    <a class="nav-link" [routerLink]="['/auth/altaPsicologo']" [queryParams]="{tipo:'alta'}">Nuevo psicologo</a>
+                </li>
+                <li class="nav-item" *ngIf="admin"  [routerLinkActive]="['active']">
+                    <a class="nav-link" [routerLink]="['/auth/altaPsicologo']" [queryParams]="{tipo:'modificar'}">Modificar psicologo</a>
+                </li>
+
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
+                       data-bs-toggle="dropdown" aria-expanded="false">
+                        Citas
+                    </a>
+                    <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <li><a class="dropdown-item" (click)="addCita()">Nueva cita</a></li>
+                       <!--  <li><a class="dropdown-item" href="#">Mis citas</a></li>
+                        <li>
+                            <hr class="dropdown-divider">
+                        </li>
+                       <li><a class="dropdown-item" href="#">Something else here</a></li>-->
+                    </ul>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" (click)="logout()">Log Out</a>
+                </li>
+            </ul>
+            <div class="ng-autocomplete" style="width: 25em">
+                <ng-autocomplete
+                    [data]="listaPantalla"
+                    placeholder="Buscar cliente"
+                    (selected)='selectEvent($event)'
+                    (inputChanged)='onChangeSearch($event)'
+                    (inputFocused)='onFocused($event)'
+                    [itemTemplate]="itemTemplate"
+                    [notFoundTemplate]="notFoundTemplate">
+                </ng-autocomplete>
+
+                <ng-template #itemTemplate let-item>
+                    <a [innerHTML]="item"></a>
+                </ng-template>
+
+                <ng-template #notFoundTemplate let-notFound>
+                    <div [innerHTML]="notFound"></div>
+                </ng-template>
+            </div>
+        </div>
+    </div>
+</nav>
+<router-outlet></router-outlet>

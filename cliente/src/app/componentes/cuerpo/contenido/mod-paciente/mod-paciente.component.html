@@ -1,0 +1,193 @@
+<section id="section_modificar">
+    <form [formGroup]="insClienteForm" (submit)="onSubmit()">
+        <div class="container">
+            <h3 class="titulos my-2 bordet shadow-sm h3">DATOS PACIENTE</h3>
+            <div class="row justify-content-start mb-2">
+                <!--Nombre-->
+                <div class="col-4 form-group">
+                    <label for="nombre" class="text-primary texto">Nombre:</label>
+                    <input type="text" class="mx-1 py-1 px-1 borde shadow-sm texto2" id="nombre" formControlName="nombre">
+                </div>
+                <!--Primer Apellido-->
+                <div class="col-4 form-group">
+                    <label for="apellido1" class="text-primary texto">Primer Apellido:</label>
+                    <input type="text" class="mx-1 py-1 px-1 borde shadow-sm texto2" id="apellido1" formControlName="apellido1">
+                </div>
+                <!--Segundo Apellido-->
+                <div class="col-4 form-group">
+                    <label for="apellido2" class="text-primary texto">Segundo Apellido:</label>
+                    <input type="text" class="mx-1 py-1 px-1 borde shadow-sm texto2" id="apellido2" formControlName="apellido2">
+                </div>
+            </div>
+            <div class="row justify-content-around mb-2 g-3">
+                <!--Nombre Error-->
+                <div class="col-md-4 form-group">
+                    <span *ngIf="getError('nombre') as message" class="text-danger texto2 "><strong>{{message}}</strong></span>
+                </div>
+                <!--Primer Apellido Error-->
+                <div class="col-md-4 form-group">
+                    <span *ngIf="getError('apellido1') as message" class="text-danger texto "><strong>{{message}}</strong></span>
+                </div>
+                <!--Segundo Apellido Error-->
+                <div class="col-md-4 form-group">
+                    <span *ngIf="getError('apellido2') as message" class="text-danger texto"><strong>{{message}}</strong></span>
+                </div>
+            </div>
+            <div class="row justify-content mb-2">
+                <!--Tipo Documento-->
+                <div class="col-md-auto form-group">
+                    <label for="tipo_doc" class="text-primary texto">Tipo Documento:</label>
+                    <select formControlName="tipo_doc" id="tipo_doc" class="mx-2 py-1 px-2 borde shadow-sm texto2" required >
+                        <option *ngFor="let d of t_doc" [value]="d.nombre">{{d.nombre}}</option>
+                    </select>
+                </div>
+                <!--Documento-->
+                <div class="col-md-auto form-group">
+                    <input type="text" formControlName="documento" class="mx-2 py-1 px-2 borde shadow-sm texto2">
+                </div>
+                <!--Teléfono-->
+                <div class="col-md-auto form-group">
+                    <label for="telefono" class="text-primary texto">Teléfono:</label>
+                    <input type="text" id="telefono" class="mx-2 py-1 px-2 borde shadow-sm texto2" formControlName="telefono">
+                </div>
+            </div>
+            <div class="row justify-content mb-2">
+                <div class="col-3"></div>
+                <!--Documento Error-->
+                <div class="col-3">
+                    <span *ngIf="getError('documento') as message" class="text-danger texto"><strong>{{message}}</strong></span>
+                </div>
+                <!--Teléfono Error-->
+                <div class="col-2 form-group">
+                    <span *ngIf="getError('telefono') as message" class="text-danger texto"><strong>{{message}}</strong></span>
+                </div>
+            </div>
+            <div class="row justify-content mb-2 g-3">
+                <!--Correo electónico-->
+                <div class="col-md-6 form-group">
+                    <label for="email" class="text-primary texto">Correo electónico:</label>
+                    <input type="email" id="email" class="mx-2 py-1 px-2 borde shadow-sm texto2" formControlName="email">
+                </div>
+                <!--Fecha Nacimiento-->
+                <div class="col-md-6 form-group">
+                    <label for="fecha_nacimiento" class="text-primary texto">Fecha Nacimiento</label>
+                    <input type="date" id="fecha_nacimiento" class="mx-2 py-1 px-2 borde shadow-sm texto2" formControlName="fecha_nacimiento" required>
+                </div>
+            </div>
+            <div class="row justify-content mb-2 g-3">
+                <!--Correo electónico Error-->
+                <div class="col-md-6 form-group">
+                    <span *ngIf="getError('email') as message" class="text-danger texto"><strong>{{message}}</strong></span>
+                </div>
+                <!--Fecha Nacimiento Error-->
+                <div class="col-md-6 form-group">
+                    <span *ngIf="getError('fecha_nacimiento') as message" class="text-danger texto"><strong>{{message}}</strong></span>
+                </div>
+            </div>
+            <div class="row justify-content mb-2 g-3">
+                <!--Dirección-->
+                <label for="calle" class="text-primary texto col-md-1">Dirección:</label>
+                <div class="col-md-11 form-group">
+                    <input type="text" id="calle" class="form-control mx-2 py-1 px-2 borde shadow-sm texto2" formControlName="calle">
+                </div>
+            </div>
+            <div class="row justify-content mb-2 g-3">
+                <!--Dirección Error-->
+                <div class="col-md-auto form-group">
+                    <span *ngIf="getError('calle') as message" class="text-danger texto"><strong>{{message}}</strong></span>
+                </div>
+            </div>
+            <div class="row justify-content mb-2">
+                <!--Código postal-->
+                <div class="col-md-4 form-group">
+                    <label for="cod_postal" class="text-primary texto">Código postal:</label>
+                    <input type="text" id="cod_postal" class="mx-2 py-1 px-2 borde shadow-sm texto2" formControlName="cod_postal">
+                </div>
+                <!--Ciudad-->
+                <div class="col-md-4 form-group">
+                    <label for="ciudad" class="text-primary texto">Ciudad:</label>
+                    <input type="text" id="ciudad" class="mx-2 py-1 px-2 borde shadow-sm texto2" formControlName="ciudad">
+                </div>
+                <!--Provincia-->
+                <div class="col-md-4 form-group">
+                    <label for="provincia" class="text-primary texto">Provincia:</label>
+                    <input type="text" id="provincia" class="mx-2 py-1 px-2 borde shadow-sm texto2" formControlName="provincia">
+                </div>
+            </div>
+            <div class="row justify-content-evenly mb-2">
+                <!--Código postal Error-->
+                <div class="col-md-4 form-group">
+                    <span *ngIf="getError('cod_postal') as message" class="text-danger texto"><strong>{{message}}</strong></span>
+                </div>
+                <!--Ciudad Error-->
+                <div class="col-md-4 form-group">
+                    <span *ngIf="getError('ciudad') as message" class="text-danger texto"><strong>{{message}}</strong></span>
+                </div>
+                <!--Provincia Error-->
+                <div class="col-md-4 form-group">
+                    <span *ngIf="getError('provincia') as message" class="text-danger texto"><strong>{{message}}</strong></span>
+                </div>
+            </div>
+            <div class="row justify-content-start mb-2">
+                <!--Nombre de Contacto-->
+                <label for="nombreContacto" class="col-md-2 text-primary texto">Nombre de Contacto</label>
+                <div class="col-md-4 form-group align-self-center">
+                    <input type="text" id="nombreContacto" class="form-control  borde shadow-sm texto2" formControlName="nombreContacto">
+                </div>
+                <!--Teléfono de Contacto-->
+                <label for="telefonoContacto" class="col-md-2 text-primary texto">Teléfono de Contacto</label>
+                <div class="col-md-2 form-group align-self-center">
+                    <input type="tel" id="telefonoContacto" class="form-control borde shadow-sm texto2" formControlName="telefonoContacto">
+                </div>
+            </div>
+            <div class="row justify-content mb-2">
+                <!--Nombre de Contacto Error-->
+                <div class="col-6 form-group">
+                    <span *ngIf="getError('nombreContacto') as message" class="text-danger texto"><strong>{{message}}</strong></span>
+                </div>
+                <!--Teléfono de Contacto Error-->
+                <div class="col-4 form-group">
+                    <span *ngIf="getError('telefonoContacto') as message" class="text-danger texto"><strong>{{message}}</strong></span>
+                </div>
+            </div>
+            <input type="hidden" formControlName="pais" value="España">
+            <div class="row justify-content mb-2">
+                <!--Permiso de Grabación-->
+                <div class="col-md-auto form-group">
+                    <label for="permisoGrabacion" class="text-primary texto">Permiso de Grabación:</label>
+                    <input type="checkbox" id="permisoGrabacion" class="mx-2 py-1 px-2 borde shadow-sm texto2" formControlName="permisoGrabacion">
+                </div>
+                <!--Protección de Datos Firmado-->
+                <div class="col-md-auto form-group">
+                    <label for="firmaProteccionDatos" class="text-primary texto">Protección de Datos Firmado:</label>
+                    <input type="checkbox" id="firmaProteccionDatos" class="mx-2 py-1 px-2 borde shadow-sm texto2" formControlName="firmaProteccionDatos">
+                </div>
+                <!--Aseguradora-->
+                <div class="col-md-auto form-group">
+                    <label for="aseguradora" class="text-primary texto">Aseguradora:</label>
+                    <select id="aseguradora" class="mx-2 py-1 px-2 borde shadow-sm texto2" formControlName="aseguradora" required>
+                        <option *ngFor="let i of  t_aseguradora" [value]="i.tipo">{{i.tipo}}</option>
+                    </select>
+                </div>
+                <!--Compañía-->
+                <div *ngIf="insClienteForm.get('aseguradora')?.value === 'COMPAÑIA'" class="col-md-auto form-group">
+                    <label for="company" class="text-primary texto">Compañía</label>
+                    <input type="text" id="company" class="mx-2 py-1 px-2 borde shadow-sm texto2" formControlName="company">
+                </div>
+            </div>
+            <div class="row justify-content mb-2">
+                <div class="col-3 form-group"></div>
+                <!--Protección de Datos Firmado Error-->
+                <div class="col-2 form-group">
+                    <span *ngIf="getError('firmaProteccionDatos') as message" class="text-danger texto"><strong>{{message}}</strong></span>
+                    <span *ngIf="firma as message" class="text-danger texto"><strong>{{message}}</strong></span>
+                </div>
+                <!--Aseguradora Error-->
+                <div class="col-3 form-group">
+                    <span *ngIf="aseguradora_err as message" class="text-danger texto"><strong>{{message}}</strong></span>
+                </div>
+            </div>
+            <button class="btn btn-primary float-end" type="submit">Guardar</button>
+        </div>
+    </form>
+</section>

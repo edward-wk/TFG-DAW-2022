@@ -1,0 +1,25 @@
+
+   
+<form [formGroup]="antecedentesForm" (submit)="guardar()" class="row justify-content mb-2 g-3">
+    <div class="container">
+        <h3 class="titulos my-4 bordet shadow-sm h3">ANTECEDENTES</h3>
+        <label class="text-primary texto" for="ant_personales">Antecedentes Personales: </label>
+        <div class="col-md-12 form-group">
+            <textarea class="borde shadow-sm texto2 w-100" formControlName="ant_personales"  id="ant_personales"></textarea>
+        </div>
+        <label class="text-primary texto mt-4" for="ant_familiares">Antecedentes Familiares: </label>
+        <div class="col-md-12 form-group">
+            <textarea class="borde shadow-sm texto2 w-100" formControlName="ant_familiares" id="ant_familiares"></textarea>
+        </div>
+        <div class="row-md-1 form-group mt-4">
+            <button class="btn btn-primary" style="float:right" type="submit">Guardar</button>
+        </div>
+    </div>
+</form>
+
+
+
+    
+   
+
+

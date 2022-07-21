@@ -1,0 +1,27 @@
+<form [formGroup]="pruebasForm" (submit)="modificar()" >
+    <div class="container">
+        <h3 class="titulos my-2 bordet shadow-sm">PRUEBAS</h3>
+        
+            <div class="col-md-6 form-group my-4">
+               <label class="text-primary texto my-2 px-1" for="dco_psicologico">Diagnóstico Psicológico:</label><input class="py-1 px-2 borde shadow-sm texto2" type="text" formControlName="dco_psicologico" placeholder="Enfermedad actual..." name="enfermedad_actual">
+            </div>
+            <div class="row justify-content my-5" id="prueba">
+                <div class="form-group w-50 mb-3 shadow-textarea">
+                    <label class="text-primary texto my-2" for="cognitiva">Prueba cognitiva:</label>
+                    <textarea class="form-control borde shadow-sm" formControlName="cognitiva" id="cognitiva" rows="3"></textarea>
+                </div>
+                <div class="form-outline2 w-50 mb-3">
+                    <label class="text-primary texto my-2" for="emocional">Prueba emocional:</label>
+                    <textarea class="form-control borde shadow-sm" id="emocional"  formControlName="emocional" rows="3"></textarea>
+                </div>
+            </div>
+            <div class="form-outline3 mb-3">
+                <label class="text-primary texto my-2"  for="pruebasPsicodiagnostico">Prueba psicodiagnóstica:</label>
+                <textarea class="form-control borde shadow-sm" formControlName="pruebasPsicodiagnostico" id="pruebasPsicodiagnostico" rows="3"></textarea>
+            </div>
+            <button class="btn btn-primary" style="float:right" type="submit" value="modificar" [disabled]="dehabilitarBtn">Modificar</button>
+        </div>
+    
+</form>
+
+

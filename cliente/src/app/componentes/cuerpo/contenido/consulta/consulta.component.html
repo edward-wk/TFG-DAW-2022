@@ -1,0 +1,57 @@
+<form [formGroup]="consultaForm">
+    <div class="container">
+        <div class="row">
+            <h3 class="titulos my-2 bordet shadow-sm h3"> 1ª CONSULTA  </h3>
+            <button class="btn btn-primary" (click)="consultaForm.reset()">Nueva consulta</button>
+        </div>
+
+        <div class=" justify-content-around g-3 my-4">
+            <label for="procedencia" class="text-primary texto">Enviado por:</label><input class="mx-2" id="procedencia"
+                                                                                           formControlName="procedencia"
+                                                                                           placeholder="Juez, médico, amigo..."
+                                                                                           type="text">
+            <label class="mx-2 text-primary texto">Psicólogo:</label>
+            <select>
+                <option *ngFor="let p of t_psicologo" [value]="p._valor"
+                        class="borde shadow-sm texto2">{{p._nombre}}</option>
+            </select>
+        </div>
+        <div class="rows w-100">
+            <div class="row justify-content-around my-5 w-100" id="motivos">
+                <div class="col-md-5 form-group" id="motivo1">
+                    <label class="text-primary texto" for="con_motivo">Motivo consulta: </label>
+                    <textarea class="form-control borde shadow-sm" id="con_motivo" formControlName="con_motivo"
+                              rows="3"></textarea>
+                </div>
+                <div class="col-md-5 form-group" id="motivo2">
+                    <label class="text-primary texto" for="con_sintomas">Síntomas: </label>
+                    <textarea class="form-control borde shadow-sm" id="con_sintomas" formControlName="con_sintomas"
+                              rows="3"></textarea>
+                </div>
+            </div>
+            <h3 class="titulos my-2 bordet shadow-sm h3">DATOS MÉDICOS</h3>
+            <div class="row justify-content-start  w-50 my-5" id="dco_medico">
+                <label for="fecha_diagnostico" class="col-4 align-self-start text-primary texto">Fecha diagnóstico:</label>
+                <input class="col-4 align-self-start mx-2 py-1 px-2 borde shadow-sm texto2" id="fecha_diagnostico" formControlName="fecha_diagnostico" type="date" min="2012-01-01">
+            </div>
+            <div class="row justify-content-around my-5 w-100" id="dco_medico">
+                <div class="col-md-5 form-group" id="dco_medico1">
+                    <label class="text-primary texto" for="dco_medico1">Posología: </label>
+                    <textarea formControlName="posologia" class="form-control borde shadow-sm" id="tratamiento"
+                              rows="3"></textarea>
+                </div>
+                <div class="col-md-5 form-group" id="dco_medico2">
+                    <label class="text-primary texto" for="dco_medico2">Patología medica:</label>
+                    <textarea formControlName="patologia_medica" class="form-control borde shadow-sm" id="dco_medico2"
+                              rows="3"></textarea>
+                </div>
+            </div>
+        </div>
+        <input class="btn btn-primary" style="float:right" type="submit" value="Guardar" (click)="guardar()">
+        <input class="btn btn-primary mx-2" style="float:right" type="submit" value="Modificar" (click)="modificar()"
+               [disabled]="dehabilitarBtn">
+    </div>
+</form>
+
+
+

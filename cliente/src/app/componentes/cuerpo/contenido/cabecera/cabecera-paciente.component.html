@@ -1,0 +1,40 @@
+<div class="card">
+    <div class="row">
+        <div class="col-sm-auto">
+            <label class="text-capitalize" name="paciente">Paciente: {{data?.nombre}} {{data?.apellido1}}
+                {{data?.apellido2}}</label>
+        </div>
+        <div class="col-sm-auto">
+            <label class="text-capitalize" name="tipoSesion">Tipo de sesión: </label>
+        </div>
+        <div class="col-sm-auto">
+            <label name="edad">Edad: {{ edad }}</label>
+        </div>
+        <div *ngIf="tablaDiagnosticos.length>0" class="mx-3 col-md-auto">
+            <label class="switclbl">Situacion del Paciente:</label>
+        </div>
+    </div>
+    <div class="row align-items-start">
+        <div class="col-md-auto">
+            <label name="ultimaSesion">Nº Historial: {{ data?.numero_historia }} </label>
+        </div>
+
+        <div class="col-md-auto">
+            Cons. Grabación: <input type="checkbox" class="form-check-input" [checked]="data?.permiso_grabacion"
+                name="consentimientoGrabacion" disabled>
+        </div>
+        <div class="col-md-auto">
+            <select name="diagnostico" id="diagnostico" (change)="cambiarValoracion($event.target)">
+                <option *ngFor="let a of tablaDiagnosticos.reverse()">{{a.diagnosticoI}} - {{a.fechaInicioI}}</option>
+            </select>
+        </div>
+
+        <div *ngIf="tablaDiagnosticos.length>0" class="col-md-auto">
+            <label class="switchBtn"> Paciente dado de alta
+                <input type="checkbox" name="ncerrarValidacion" (change)="cerrarValidacion($event.target)"
+                [disabled]="valorCheckAlta" [checked]="valorCheckAlta" [value]="valorCheckAlta" >
+            </label>
+        </div>
+        <div *ngIf="valorCheckAlta" class="col align-self-end offset"><input type="text" class="w-100 borde shadow-sm" disabled [value]="fechaAlta"></div>
+    </div>
+</div>

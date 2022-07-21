@@ -1,0 +1,33 @@
+<div class="row mx-1">
+    <div class="col-sm-2 my-5 prueba">
+        <nav >
+            <ul class="acorh">
+                <li><a routerLink="antecedentes">ANTECEDENTES</a></li>
+                <li><a routerLink="consulta">CONSULTA</a></li>
+                <li><a routerLink="pruebas">PRUEBAS</a></li>
+                <li><a routerLink="seguimiento">SEGUIMIENTO</a></li>
+                <li><a routerLink="informes">INFORMES</a>
+                    <!--Dejamos el ul con vistas a poder desarrollar en un futuro-->
+                    <!-- <ul>
+                        <li><a href="#">PACIENTE</a></li>
+                        <li><a href="#">JUDICIAL</a></li>
+                        <li><a href="#">PROTECCION DATOS</a></li>
+                    </ul> -->
+                </li>
+                <!--  <li><a routerLink="/auth/agenda">FACTURAS</a></li>
+                <li><a routerLink="/auth/agenda">VIDEOLLAMADA</a>
+                    <ul>
+                        <li><a routerLink="/auth/agenda">SESIONES</a></li>
+                        <li><a routerLink="/auth/agenda">GRABACIONES</a></li>
+                    </ul>
+                </li>-->
+                <li><a routerLink="modificar">MODIFICAR DATOS DE PACIENTE</a></li>
+            </ul>
+        </nav>
+    </div>
+
+    <div class="col-sm-9">
+        <app-cabecera-paciente></app-cabecera-paciente>
+        <router-outlet></router-outlet>
+    </div>
+</div>

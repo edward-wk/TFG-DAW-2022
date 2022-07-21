@@ -1,0 +1,40 @@
+<form [formGroup]="seguimientoForm">
+    <div class="container">
+        <div>
+            <div class="row">
+                <h3 class="titulos my-2 bordet shadow-sm h3">SEGUIMIENTO</h3>
+                <button class="btn btn-primary" (click)="seguimientoForm.reset()">Nuevo seguimiento</button>
+            </div>
+
+            <div class="row mb-2 mx-auto my-4">
+
+                <div class="seguimiento2  my-3">
+                    <label class="text-primary texto">Selecciona seguimiento:</label> <select class="mx-2 py-1 px-2 borde shadow-sm texto2" name="seguimiento" id="seguimiento" (change)="cambiarValoracion($event.target)">
+                        <option *ngFor="let a of tablaSeguimientos.reverse()">{{a}}</option>
+                    </select>
+                </div>
+            </div>
+            <div class="row justify-content-around my-2 w-100">
+                <div class="form-outline1 w-100 my-3">
+                    <label class="text-primary texto" for="observaciones">Observaciones: </label>
+                    <textarea class="form-control borde shadow-sm" formControlName="observaciones"
+                              id="observaciones" rows="4"></textarea>
+                </div>
+
+                <div class="form-outline1 w-100 mb-3">
+                    <label class="text-primary texto" for="anotaciones">Anotaciones: </label>
+                    <textarea class="form-control borde shadow-sm" formControlName="anotaciones"
+                              id="anotaciones" rows="4"></textarea>
+                </div>
+                <div class="form-outline2 w-100 mb-3">
+                    <label class="text-primary texto" for="conducta_a_seguir">Conducta a seguir: </label>
+                    <textarea class="form-control borde shadow-sm" formControlName="conducta_a_seguir"
+                              id="conducta_a_seguir" rows="4"></textarea>
+                </div>
+            </div>
+
+            <button class="btn btn-primary" style="float:right" type="submit" (click)="modificar()" [disabled]="dehabilitarBtn">Modificar</button>
+            <button class="btn btn-primary mx-2" style="float:right" type="submit" (click)="guardar()" [disabled]="dehabilitarBtn">Guardar</button>
+        </div>
+    </div>
+</form>
